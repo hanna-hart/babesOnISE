@@ -1,13 +1,28 @@
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
 
-import javax.swing.BorderFactory;
+import javax.print.attribute.standard.Media;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 
 public class jukebox {
 
+	JLabel counterLabel, perSecLabel;
+	Font font1, font2;
+	int clickCount;
+	SongCountCounter songCounter = new SongCountCounter();
+	
+	
 	public static void main(String[] args) {
 		
 		new jukebox();
@@ -15,7 +30,15 @@ public class jukebox {
 	
 	public jukebox() {
 		
+		clickCount = 0;
+		createFont();
+		
 		launch();
+	}
+	
+	public void createFont() {
+		font1 = new Font("Comic Sans MS", Font.PLAIN, 32);
+		font2 = new Font("Comic Sans MS", Font.PLAIN, 15);
 	}
 	
 	public void launch() {
@@ -26,26 +49,41 @@ public class jukebox {
 		window.getContentPane().setBackground(Color.magenta);
 		window.setLayout(null);
 		
-		// Create boarder
-		
-		Border blackline;
-		blackline = BorderFactory.createLineBorder(Color.black);
 		
 		// Create panel for jukebox picture
 		JPanel jukeboxPanel = new JPanel();
 		jukeboxPanel.setBounds(100,220,200,200);
-		jukeboxPanel.setBackground(Color.gray);
+		jukeboxPanel.setBackground(Color.magenta);
 		window.add(jukeboxPanel);
 		
-		// Add image
+		// Panel for click count
+		JPanel counterPanel = new JPanel();
+		counterPanel.setBounds(100,100,250,100);
+		counterPanel.setBackground(Color.magenta);
+		counterPanel.setLayout(new GridLayout(2,1));
+		window.add(counterPanel);
 		
-		// ImageIcon jukebox = new ImageIcon(getClass().getClassLoader().getResource(""));
+		// Initialize labels
+		
+		counterLabel = new JLabel(clickCount + " song credits");
+		counterLabel.setForeground(Color.white);
+		counterLabel.setFont(font1);
+		counterPanel.add(counterLabel);
+		
+		perSecLabel = new JLabel();
+		perSecLabel.setForeground(Color.white);
+		perSecLabel.setFont(font2);
+		counterPanel.add(counterLabel);
+		
+		// Add image
+		ImageIcon jukebox = new ImageIcon(getClass().getClassLoader().getResource("transparentjukebox.png"));
 		
 		// Create Buttons
 		JButton jukeboxButton = new JButton();
-		jukeboxButton.setBackground(Color.yellow);
+		jukeboxButton.setBackground(Color.magenta);
 		jukeboxButton.setFocusPainted(false);
-		//jukeboxButton.setIcon(jukebox);
+		jukeboxButton.setIcon(jukebox);
+		jukeboxButton.addActionListener(songCounter);
 		jukeboxPanel.add(jukeboxButton);
 		
 		
@@ -54,5 +92,24 @@ public class jukebox {
 		
 		
 	}
+	
+    public void playMusic() {       
+
+
+    }
+	
+	
+	public class SongCountCounter implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			clickCount++;
+			counterLabel.setText(clickCount + " song credits");
+		}
+		
+	}
+
+
 
 }
+
+
