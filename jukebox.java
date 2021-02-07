@@ -45,8 +45,6 @@ public class jukebox {
 		JButton jukeboxButton = new JButton();
 		jukeboxButton.setBackground(Color.yellow);
 		jukeboxButton.setFocusPainted(false);
-		//jukeboxButton.setBorder(blackline);
-		jukeboxButton.setSize(150, 100);
 		//jukeboxButton.setIcon(jukebox);
 		jukeboxPanel.add(jukeboxButton);
 		
