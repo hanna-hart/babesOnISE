@@ -7,16 +7,17 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
+import java.net.URL;
 
 import javax.print.attribute.standard.Media;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
+import javax.sound.*;
 import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class jukebox {
@@ -175,25 +176,87 @@ public class jukebox {
 		
 	}
 	
-//	public void playFiftiesMusic() {
-//	       
-//		try{
-//	    	     AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getResource("C:\\Users\\hanna\\Documents\\OU\\Spring 2021\\Hacklahoma\\babesOnISE\\Fifties.mp3"));
-//	    	     Clip clip = AudioSystem.getClip();
-//	    	     clip.open(audioInputStream);
-//	    	     clip.start( );
-//	    	    }
-//	    	   catch(Exception ex){  
-//	    	   }
-//
-//	}
+	public void playFiftiesMusic() {
+	       
+		try{
+				 URL url = this.getClass().getResource("fifties.wav");
+	    	     AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
+	    	     Clip clip = AudioSystem.getClip();
+	    	     clip.open(audioInputStream);
+	    	     clip.start();
+	    	    }
+	    	   catch(Exception ex){  
+	    		   System.out.print(ex);
+	    	   }
+
+	}
+	
+	public void playSixtiesMusic() {
+	       
+		try{
+				 URL url = this.getClass().getResource("sixties.wav");
+	    	     AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
+	    	     Clip clip = AudioSystem.getClip();
+	    	     clip.open(audioInputStream);
+	    	     clip.start();
+	    	    }
+	    	   catch(Exception ex){  
+	    		   System.out.print(ex);
+	    	   }
+
+	}
+	
+	public void playSeventiesMusic() {
+	       
+		try{
+				 URL url = this.getClass().getResource("seventies.wav");
+	    	     AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
+	    	     Clip clip = AudioSystem.getClip();
+	    	     clip.open(audioInputStream);
+	    	     clip.start();
+	    	    }
+	    	   catch(Exception ex){  
+	    		   System.out.print(ex);
+	    	   }
+
+	}
+	
+	public void playEightiesMusic() {
+	       
+		try{
+				 URL url = this.getClass().getResource("eighties.wav");
+	    	     AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
+	    	     Clip clip = AudioSystem.getClip();
+	    	     clip.open(audioInputStream);
+	    	     clip.start();
+	    	    }
+	    	   catch(Exception ex){  
+	    		   System.out.print(ex);
+	    	   }
+
+	}
+	
+	public void playNinetiesMusic() {
+	       
+		try{
+				 URL url = this.getClass().getResource("nineties.wav");
+	    	     AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
+	    	     Clip clip = AudioSystem.getClip();
+	    	     clip.open(audioInputStream);
+	    	     clip.start();
+	    	    }
+	    	   catch(Exception ex){  
+	    		   System.out.print(ex);
+	    	   }
+
+	}
 	
 	public class SongCountCounter implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent event) {
 			clickCount++;
 			counterLabel.setText(clickCount + " song credits");
-			//playMusic();
+			
 		}
 		
 	}
@@ -203,7 +266,7 @@ public class jukebox {
 		public void actionPerformed(ActionEvent event) {
 			if (clickCount >= 50) {
 				songNameLabel.setText("You are listening to 'I Got a Woman' by Ray Charles");
-				//playFiftiesMusic();
+				playFiftiesMusic();
 			}
 		}
 	}
@@ -213,7 +276,7 @@ public class jukebox {
 		public void actionPerformed(ActionEvent event) {
 			if (clickCount >= 60) {
 				songNameLabel.setText("You are listening to 'I Got You' by James Brown");
-				//playFiftiesMusic();
+				playSixtiesMusic();
 			}
 		}
 		
@@ -222,9 +285,9 @@ public class jukebox {
 	public class seventiesAction implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent event) {
-			if (clickCount >= 7) {
+			if (clickCount >= 70) {
 				songNameLabel.setText("You are listening to 'Don't Go Breaking My Heart' /n by Elton John (Feat. Kiki Dee)");
-				//playFiftiesMusic();
+				playSeventiesMusic();
 			}
 		}
 		
@@ -235,7 +298,7 @@ public class jukebox {
 		public void actionPerformed(ActionEvent event) {
 			if (clickCount >= 80) {
 				songNameLabel.setText("You are listening to 'You Spin Me Round' by Dead or Alive");
-				//playFiftiesMusic();
+				playEightiesMusic();
 			}
 		}
 		
@@ -246,7 +309,7 @@ public class jukebox {
 		public void actionPerformed(ActionEvent event) {
 			if (clickCount >= 90) {
 				songNameLabel.setText("You are listening to 'Gettin' Jiggy Wit It' by Will Smith");
-				//playFiftiesMusic();
+				playNinetiesMusic();
 			}
 		}
 		
