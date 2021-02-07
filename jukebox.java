@@ -9,6 +9,9 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 
 import javax.print.attribute.standard.Media;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -93,17 +96,25 @@ public class jukebox {
 		
 	}
 	
-    public void playMusic() {       
+	public void playMusic() {
+	       
+		try{
+	    	     AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getResource("C:\\Users\\hanna\\Documents\\OU\\Spring 2021\\Hacklahoma\\babesOnISE\\Fifties.mp3"));
+	    	     Clip clip = AudioSystem.getClip();
+	    	     clip.open(audioInputStream);
+	    	     clip.start( );
+	    	    }
+	    	   catch(Exception ex){  
+	    	   }
 
-
-    }
-	
+	}
 	
 	public class SongCountCounter implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent event) {
 			clickCount++;
 			counterLabel.setText(clickCount + " song credits");
+			playMusic();
 		}
 		
 	}
